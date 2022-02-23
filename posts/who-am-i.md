@@ -26,12 +26,12 @@ Também dou aulas online e faço atendimentos de mentoria para quem deseja desen
 O que eu falo?
 Eu utilizo muito essas palavras e elas fazem parte do meu vocabulário pessoal, pode-se dizer também que são alguns valores para mim.
 
--Consciência
--Clareza
--Idéias
--Propósito
--Entendimento
--Responsabilidade
+- Consciência
+- Clareza
+- Idéias
+- Propósito
+- Entendimento
+- Responsabilidade
 
 ## Percepção ##
 Como eu percebo o mundo.
