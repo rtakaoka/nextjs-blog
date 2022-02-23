@@ -7,6 +7,7 @@ Saber quem somos é extremamente importante para cada um de nós. Acredito que s
 
 Aqui eu exponho _“Quem eu sou?”_ usando uma versão adaptada do **Mapa da Empatia**.
 
+
 ## Identidade ##
 Como eu me identifico.
 
