@@ -3,9 +3,9 @@ title: 'Who am I'
 date: '2022-02-22'
 ---
 
-Saber quem somos é extremamente importante para cada um de nós. Acredito que somente com um *forte senso de si* é possível desenvolver as melhores competências sociais, emocionais e cognitivas. Esse é o caminho para se livrar da dependência emocional do reconhecimento externo e construir a felicidade genuína, a responsabilidade pessoal e alta performance.
+Saber quem somos é extremamente importante para cada um de nós. Acredito que somente com um **forte senso de si** é possível desenvolver as melhores competências sociais, emocionais e cognitivas. Esse é o caminho para se livrar da dependência emocional do reconhecimento externo e construir a felicidade genuína, a responsabilidade pessoal e alta performance.
 
-Aqui eu exponho _“Quem eu sou?”_ usando uma versão adaptada do *Mapa da Empatia*.
+Aqui eu exponho _“Quem eu sou?”_ usando uma versão adaptada do **Mapa da Empatia**.
 
 ## Identidade ##
 Como eu me identifico.
@@ -48,11 +48,11 @@ Eu ouço muitos louvores em inglês, como Hillsong. E também instrumentais.
 
 Ouço pregações, palestras e aulas de pessoas que considero como boas referências e que busco como inspiração.
 
-Dentre as coisas que mais ouço estão os podcasts: meu grande amigo Fernando do *Canal Não Morda a Maçã*, meu favorito de ciências chamado *Sinapse* e meu favorito de finanças chamado *Stock Pickers*.
+Dentre as coisas que mais ouço estão os podcasts: meu grande amigo Fernando do **Canal Não Morda a Maçã**, meu favorito de ciências chamado **Sinapse** e meu favorito de finanças chamado **Stock Pickers**.
 
-Também ouço músicas de background do canal *The Soul of Wind* quando preciso de foco e concentração.
+Também ouço músicas de background do canal **The Soul of Wind** quando preciso de foco e concentração.
 
-Por último, sou completamente viciado nas dicas do *Filipe Deschamps* quando me engajo no meu aprendizado de programação.
+Por último, sou completamente viciado nas dicas do **Filipe Deschamps** quando me engajo no meu aprendizado de programação.
 
 ## Motivação ##
 Como eu me motivo para agir.
@@ -75,5 +75,3 @@ O mapa da empatia é uma ferramenta muito útil para duas coisas:
 1) Para descobrir o seu próprio viés como profissional.
 
 2) Para desenhar o perfil daqueles com quem você deseja construir empatia.
-
-aaaaa
