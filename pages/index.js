@@ -21,8 +21,11 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <section className='flex-1'>
+        <p className='text-2xl text-gray-700'>Hey! I'm Rômulo Takaoka.</p>
+      </section>
       <section className={utilStyles.headingMd}>
-        <p>Hey, I'm <strong>Rômulo!</strong> Last year I decided to learn some coding skills. Now I build websites and help business to establish their presence on the web. Contact me on <a href="https://instagram.com/rtakaoka">Instagram</a>.</p>
+        <p>Last year I decided to learn some coding skills. Now I build websites and help business to establish their presence on the web. Contact me on <a href="https://instagram.com/rtakaoka">Instagram</a>.</p>
       </section>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
