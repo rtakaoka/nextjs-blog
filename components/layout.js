@@ -1,20 +1,18 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import Header from './Header'
 
 const name = 'Rômulo Takaoka'
-export const siteTitle = 'Rômulo Takaoka`s Website with Next.js'
+export const siteTitle = "Rômulo Takaoka's Blog"
 
 export default function Layout({ children, home }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Everything about me using Next.js"
+          content="Everything about me."
         />
         <meta
           property="og:image"
@@ -25,46 +23,14 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
-      <main>{children}</main>
+      
+      <Header />
+
+      <main className='mx-auto max-w-7xl p-4'>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className='mx-auto max-w-7xl p-4'>
           <Link href="/">
-            <a>← Back to home</a>
+            <a className='text-blue-500 hover:underline'>← Back to Home</a>
           </Link>
         </div>
       )}

@@ -1,4 +1,18 @@
-html,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100
+  text-gray-900
+  dark:bg-gray-900
+  dark:text-gray-300
+  transition-colors;
+  
+  -webkit-font-smoothing: antialiased;
+}
+
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -24,4 +38,4 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
-}
+} */
