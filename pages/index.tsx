@@ -39,10 +39,12 @@ export default function Home({ allPostsData }) {
         </div>
 
       </section>
+      <h2 className='text-3xl font-bold my-6'>Blog</h2>
+
 
       <section className='md:flex gap-6 items-start'>
-        <div>
-          <h2 className='text-3xl font-bold my-6'>Blog</h2>
+        <div className='md:flex-1'>
+
           <ul>
             {allPostsData.map(({ id, date, title }) => (
               <li
@@ -50,8 +52,8 @@ export default function Home({ allPostsData }) {
                 className='
                 border 
                 rounded 
-                p-4 
-                my-4 
+                p-4
+                mb-6
                 dark:border-white 
                 border-gray-900 
                 hover:bg-gray-200 
@@ -71,7 +73,7 @@ export default function Home({ allPostsData }) {
           </ul>
         </div>
 
-        <aside>
+        <aside className='md:flex-1'>
           <div className='
             border
             border-gray-900
@@ -81,35 +83,36 @@ export default function Home({ allPostsData }) {
             min-h-[240px]
             overflow-hidden
             items-center
+            md:min-h-0
             '
           >
             <h3 className='text-xl font-bold'>Rômulo Takaoka</h3>
             <p className='mt-4'>Sou um apaixonado por tecnologia que teve medo de programação por muito tempo. Desde 2021 decidi superar esse medo e programar minhas aplicações pra valer.</p>
-            
+
             <div className='flex gap-4 mt-4'>
-            <a 
-              href="https://github.com/rtakaoka"
-              aria-label='Perfil Github'
-              target={'_blank'}
-              className='hover:text-blue-500 flex-col'
-            >
-              <GithubLogo size={24} />
-            </a>
-            <a 
-              href="https://linkedin.com/in/romulotakaoka"
-              aria-label='Perfil LinkedIn'
-              target={'_blank'}
-              className='hover:text-blue-500 flex-col'
-            >
-              <LinkedinLogo size={24} />
-            </a>
-            <a 
-              href="mailto:romulo.takaoka@desperta.me"
-              aria-label='Enviar e-mail'
-              className='hover:text-blue-500 flex-col'
-            >
-              <Envelope size={24} />
-            </a>
+              <a
+                href="https://github.com/rtakaoka"
+                aria-label='Perfil Github'
+                target={'_blank'}
+                className='hover:text-blue-500 flex-col'
+              >
+                <GithubLogo size={24} />
+              </a>
+              <a
+                href="https://linkedin.com/in/romulotakaoka"
+                aria-label='Perfil LinkedIn'
+                target={'_blank'}
+                className='hover:text-blue-500 flex-col'
+              >
+                <LinkedinLogo size={24} />
+              </a>
+              <a
+                href="mailto:romulo.takaoka@desperta.me"
+                aria-label='Enviar e-mail'
+                className='hover:text-blue-500 flex-col'
+              >
+                <Envelope size={24} />
+              </a>
             </div>
           </div>
         </aside>
