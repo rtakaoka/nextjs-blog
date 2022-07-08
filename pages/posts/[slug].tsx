@@ -116,22 +116,27 @@ export default function Post({ post }) {
 
       <main>
         <article>
-          <div className="text-sm">
-            <Date dateString={post.publishedAt} />
+
+
+
+          <div className="text-sm border border-gray-900 dark:border-gray-100 rounded p-4">
+            <div className="flex gap-2">
+            <p className="font-bold">Publicado em:</p>
+              <Date dateString={post.publishedAt} />
+            </div>
+            
+            <div className="flex gap-4 mt-2">
+              <p className="font-bold">Categorias:</p>
+              <ul>
+                {post.categories.map((category) => (
+                  <li key={category.slug}>{category.title}</li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-
-          <div className="flex gap-4 text-sm">
-            <p className="text-bold">Categorias:</p>
-            <ul>
-              {post.categories.map((category) => (
-                <li key={category.slug}>{category.title}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div 
-            className="mt-4" 
+          <div
+            className="mt-4"
             dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
         </article>
       </main>
