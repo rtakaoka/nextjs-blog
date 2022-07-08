@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { gql, useQuery } from "@apollo/client";
+
+import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import Layout, { siteTitle } from "../../components/layout";
 import Head from 'next/head';
@@ -93,21 +93,11 @@ export async function getStaticPaths() {
     }
   }))
 
-  // [  
-  //   {
-  //     params: {
-  //       slug: "persuasao-como-influenciar-pessoas-com-etica"
-  //     }
-  //   },
-  // ];
-
   return {
     paths,
     fallback: false
   }
 }
-
-
 
 export default function Post({ post }) {
   console.log(post);
@@ -116,20 +106,23 @@ export default function Post({ post }) {
     <Layout home={false}>
 
       <Head>
-        <title>{post.title + " | " + { siteTitle }}</title>
+        <title>{post.title}</title>
       </Head>
 
-      <div>
-        <p>{post.title}</p>
-        <p>{post.metaDescription}</p>
+      <div className="py-6">
+        <p className="text-3xl font-bold">{post.title}</p>
+        <p className="mt-4 text-sm">{post.metaDescription}</p>
       </div>
 
       <main>
         <article>
-          <Date dateString={post.publishedAt} />
-          
-          <div>
-            <p>Categorias:</p>
+          <div className="text-sm">
+            <Date dateString={post.publishedAt} />
+          </div>
+
+
+          <div className="flex gap-4 text-sm">
+            <p className="text-bold">Categorias:</p>
             <ul>
               {post.categories.map((category) => (
                 <li key={category.slug}>{category.title}</li>
@@ -137,7 +130,9 @@ export default function Post({ post }) {
             </ul>
           </div>
 
-          <div dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+          <div 
+            className="mt-4" 
+            dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
         </article>
       </main>
 
