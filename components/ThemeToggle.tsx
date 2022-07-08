@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { BiMoon, BiSun } from "react-icons/bi";
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const [ mounted, setMounted ] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
@@ -15,13 +15,13 @@ export default function ThemeToggle() {
   }
 
   return (
-    <div>
+    <div className="flex justify-end"> 
       <button
         className="focus:outline-none text-blue-500 dark:text-yellow-500 transition-none"
         onClick={() => setTheme(isDark() ? 'light' : 'dark')}
         aria-label="Theme toggle"
       >
-        {isDark() ? <BiSun size={24} /> : <BiMoon size={24} />}
+        {isDark() ? <i><BiSun size={24} /></i> : <i><BiMoon size={24} /></i>}
       </button>
     </div>
   )

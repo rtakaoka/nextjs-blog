@@ -2,23 +2,53 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Layout, { siteTitle } from '../components/layout'
-import { getSortedPostsData } from '../lib/posts'
 
 import Date from '../components/date'
 import Image from 'next/image'
 import { Envelope, GithubLogo, LinkedinLogo } from 'phosphor-react'
+import PostsList from '../components/PostsList'
+import client from '../apollo-client'
+import { gql } from '@apollo/client'
 
+export const GET_POSTS = gql`
+  query GetPosts {
+    posts(orderBy: publishedAt_DESC, stage: PUBLISHED) {
+      id
+      slug
+      title
+      publishedAt
+      createdAt
+      locale
+    }
+  }
+`;
+
+interface PostsData {
+  posts: {
+    id: string;
+    slug: string;
+    title: string;
+    publishedAt: Date;
+    createdAt: Date;
+    locale: string;
+  }
+}
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+
+  const { data } = await client.query<PostsData>({
+    query: GET_POSTS,
+  });
+
   return {
     props: {
-      allPostsData
+      posts: data.posts,
     }
   }
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ posts }) {
+console.log(posts);
   return (
     <Layout home>
       <Head>
@@ -43,35 +73,8 @@ export default function Home({ allPostsData }) {
 
 
       <section className='md:flex gap-6 items-start'>
-        <div className='md:flex-1'>
 
-          <ul>
-            {allPostsData.map(({ id, date, title }) => (
-              <li
-                key={id}
-                className='
-                border 
-                rounded 
-                p-4
-                mb-6
-                dark:border-white 
-                border-gray-900 
-                hover:bg-gray-200 
-                dark:hover:bg-gray-800
-                hover:underline
-                '
-              >
-                <Link href={`/posts/${id}`}>
-                  <a className='font-bold'>{title}</a>
-                </Link>
-                <br />
-                <small>
-                  <Date dateString={date} />
-                </small>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <PostsList posts={posts}/>
 
         <aside className='md:flex-1'>
           <div className='

@@ -22,7 +22,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
+    "**/*.tsx", "components/PostsList.jsx",
   ],
   "exclude": [
     "node_modules"
