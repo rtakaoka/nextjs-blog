@@ -19,6 +19,9 @@ export const GET_POSTS = gql`
       publishedAt
       createdAt
       locale
+      categories {
+        title
+      }
     }
   }
 `;

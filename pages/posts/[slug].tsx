@@ -101,7 +101,7 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ post }) {
-  console.log(post);
+  
 
   return (
     <Layout home={false}>
@@ -116,7 +116,7 @@ export default function Post({ post }) {
       </div>
 
       <main>
-        <article>
+        <article className="">
 
 
 
@@ -137,7 +137,7 @@ export default function Post({ post }) {
           </div>
 
           <div
-            className="mt-4"
+            className="mt-4 prose dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
         </article>
       </main>
