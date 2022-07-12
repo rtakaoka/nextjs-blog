@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Footer from './Footer'
 import Header from './Header'
 
 const name = 'Rômulo Takaoka'
@@ -34,6 +35,7 @@ export default function Layout({ children, home }) {
           </Link>
         </div>
       )}
+      <Footer />
     </div>
   )
 }

@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import Image from 'next/image'
 
 import Layout, { siteTitle } from '../components/layout'
-
-import Date from '../components/date'
-import Image from 'next/image'
-import { Envelope, GithubLogo, LinkedinLogo } from 'phosphor-react'
 import PostsList from '../components/PostsList'
+import ProfileCard from '../components/ProfileCard'
+
 import client from '../apollo-client'
 import { gql } from '@apollo/client'
 
@@ -52,7 +50,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts }) {
-  console.log(posts);
+  
   return (
     <Layout home>
       <Head>
@@ -80,53 +78,8 @@ export default function Home({ posts }) {
 
         <PostsList posts={posts} />
 
-        <aside className='md:flex-1'>
-          <div className='
-            border
-            border-gray-900
-            dark:border-white
-            rounded
-            p-4
-            min-h-[240px]
-            overflow-hidden
-            items-center
-            md:min-h-0
-            '
-          >
-            <h3 className='text-xl font-bold'>Rômulo Takaoka</h3>
-            <p className='mt-4'>Sou um apaixonado por tecnologia que teve medo de programação por muito tempo. Desde 2021 decidi superar esse medo e programar minhas aplicações pra valer.</p>
+        <ProfileCard />
 
-            <div className='flex gap-4 mt-4'>
-
-              <Link
-                href="https://github.com/rtakaoka"
-                target={'_blank'}
-                aria-label='Perfil Github'
-              >
-                <a className='hover:text-blue-500 flex-col'>
-                  <GithubLogo size={24} />
-                </a>
-              </Link>
-
-              <Link
-                href="https://linkedin.com/in/romulotakaoka"
-                aria-label='Perfil LinkedIn'
-                target={'_blank'}>
-                <a className='hover:text-blue-500 flex-col'>
-                  <LinkedinLogo size={24} />
-                </a>
-              </Link>
-
-              <Link
-                href="mailto:romulo.takaoka@desperta.me"
-                aria-label='Enviar e-mail'>
-                <a className='hover:text-blue-500 flex-col'>
-                  <Envelope size={24} />
-                </a>
-              </Link>
-            </div>
-          </div>
-        </aside>
       </section>
 
     </Layout>

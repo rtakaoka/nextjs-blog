@@ -23,10 +23,10 @@ export default function Header() {
             <Link href={"/"} className="text-white">Home</Link>
           </li>
           <li className="hover:underline">
-            <Link href={"/"} className="text-white">About</Link>
+            <Link href={"/about"} className="text-white">About</Link>
           </li>
           <li className="hover:underline">
-            <Link href={"/"} className="text-white">Contact</Link>
+            <Link href={"/contact"} className="text-white">Contact</Link>
           </li>
         </ul>
 
