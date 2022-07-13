@@ -1,9 +1,9 @@
-
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import Layout, { siteTitle } from "../../components/layout";
+import Layout from "../../components/layout";
 import Head from 'next/head';
 import Date from '../../components/date';
+import PostsList from "../../components/PostsList";
 
 const GET_POST_BY_SLUG = gql`
   query GetPostBySlug ($slug:String){
@@ -39,6 +39,9 @@ query GetPosts {
     publishedAt
     createdAt
     locale
+    categories {
+        title
+      }
   }
 }
 `;
@@ -66,21 +69,41 @@ interface Post {
   }
 }
 
+interface PostsData {
+  posts: {
+    id: string;
+    slug: string;
+    title: string;
+    publishedAt: Date;
+    createdAt: Date;
+    locale: string;
+  }
+}
+
 export async function getStaticProps({ params }) {
-  const { data } = await client.query<Post>(
+  const singlePostResponse = await client.query<Post>(
     {
       query: GET_POST_BY_SLUG,
       variables: { slug: params.slug }
     }
   );
+  const singlePostData = singlePostResponse.data;
+  
+  const postsResponse = await client.query<PostsData>({
+    query: GET_POSTS,
+  });
+
+  const postsData = postsResponse.data
 
   return {
     props: {
-      post: data.post,
+      post: singlePostData.post,
+      posts: postsData.posts,
     },
     revalidate: 10,
   }
 }
+
 
 
 export async function getStaticPaths() {
@@ -100,8 +123,8 @@ export async function getStaticPaths() {
   }
 }
 
-export default function Post({ post }) {
-  
+export default function Post({ post, posts }) {
+
 
   return (
     <Layout home={false}>
@@ -110,38 +133,44 @@ export default function Post({ post }) {
         <title>{post.title}</title>
       </Head>
 
-      <div className="py-6">
-        <h1 className="text-3xl font-bold">{post.title}</h1>
-        <p className="mt-4 text-sm">{post.metaDescription}</p>
-      </div>
+      <div className="md:flex gap-6">
 
-      <main>
-        <article className="max-w-[65ch]">
-
-
-
-          <div className="text-sm border border-gray-900 dark:border-gray-100 rounded p-4">
-            <div className="flex gap-2">
-            <p className="font-bold">Publicado em:</p>
-              <Date dateString={post.publishedAt} />
-            </div>
-            
-            <div className="flex gap-4 mt-2">
-              <p className="font-bold">Categorias:</p>
-              <ul>
-                {post.categories.map((category) => (
-                  <li key={category.slug}>{category.title}</li>
-                ))}
-              </ul>
-            </div>
+        <main className="max-w-[65ch] m-auto">
+          <div className="py-6">
+            <h1 className="text-3xl font-bold">{post.title}</h1>
+            <p className="mt-4 text-sm">{post.metaDescription}</p>
           </div>
 
-          <div
-            className="mt-4 prose dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
-        </article>
-      </main>
+          <article>
 
+            <div className="text-sm border border-gray-900 dark:border-gray-100 rounded p-4">
+              <div className="flex gap-2">
+                <p className="font-bold">Publicado em:</p>
+                <Date dateString={post.publishedAt} />
+              </div>
+
+              <div className="flex gap-4 mt-2">
+                <p className="font-bold">Categorias:</p>
+                <ul>
+                  {post.categories.map((category) => (
+                    <li key={category.slug}>{category.title}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="mt-4 prose dark:prose-invert"
+              dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+          </article>
+        </main>
+        
+        <aside className="max-w-[65ch] mx-auto pt-6">
+        <p className="text-3xl font-bold pb-6">Mais Posts</p>
+          <PostsList posts={posts}/>
+
+        </aside>
+      </div>
     </Layout>
   )
 }
