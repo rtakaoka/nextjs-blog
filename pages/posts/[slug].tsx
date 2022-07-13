@@ -111,7 +111,7 @@ export default function Post({ post }) {
       </Head>
 
       <div className="py-6">
-        <p className="text-3xl font-bold">{post.title}</p>
+        <h1 className="text-3xl font-bold">{post.title}</h1>
         <p className="mt-4 text-sm">{post.metaDescription}</p>
       </div>
 
