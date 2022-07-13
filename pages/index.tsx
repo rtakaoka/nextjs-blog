@@ -7,6 +7,7 @@ import ProfileCard from '../components/ProfileCard'
 
 import client from '../apollo-client'
 import { gql } from '@apollo/client'
+import Footer from '../components/Footer'
 
 export const GET_POSTS = gql`
   query GetPosts {
@@ -83,5 +84,6 @@ export default function Home({ posts }) {
       </section>
 
     </Layout>
+    
   )
 }

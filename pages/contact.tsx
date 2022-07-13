@@ -5,9 +5,7 @@ export default function About() {
   return (
     <Layout home={false}>
       <div className="md:flex md:items-baseline md:gap-6 md:justify-center">
-        <div className="flex-1 md:max-w-sm">
-        <ProfileCard />
-        </div>
+        
         <form className="flex-1 md:max-w-sm mt-6" action="" method="post">
 
           <p className="font-bold text-xl mb-4">Entre em contato:</p>
