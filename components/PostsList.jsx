@@ -21,7 +21,7 @@ console.log(slug)
                 mb-6
                 
                 ${post.slug == slug 
-                  ? 'bg-gray-400 border-0 hover:bg-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700'
+                  ? 'bg-gray-300 border-0 hover:bg-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700'
                   : 'border-gray-900 hover:bg-gray-200 dark:border-white dark:hover:bg-gray-800'
                 }
                 `}
@@ -30,7 +30,7 @@ console.log(slug)
               <Link href={`/posts/${post.slug}`}>
                 <a className="hover:underline">
                   {post.slug == slug 
-                  ? <p>Você está lendo este post ✨</p> 
+                  ? <p>Você está lendo este post<span className="text-xl"> 🎉</span></p>
                   : <Date dateString={post.publishedAt} />
                   }
                 </a>
