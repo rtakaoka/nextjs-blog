@@ -116,7 +116,7 @@ export default function Post({ post }) {
       </div>
 
       <main>
-        <article className="">
+        <article className="max-w-[65ch]">
 
 
 
