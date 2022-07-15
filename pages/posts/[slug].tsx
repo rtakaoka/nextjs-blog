@@ -77,6 +77,9 @@ interface PostsData {
     publishedAt: Date;
     createdAt: Date;
     locale: string;
+    categories: {
+      title: string
+    }
   }
 }
 
@@ -133,17 +136,17 @@ export default function Post({ post, posts }) {
         <title>{post.title}</title>
       </Head>
 
-      <div className="md:flex gap-6">
+      <div className="md:flex md:justify-between gap-6">
 
-        <main className="max-w-[65ch] m-auto">
-          <div className="py-6">
+        <main className="max-w-7xl">
+          <div className="max-w-[65ch] py-6">
             <h1 className="text-3xl font-bold">{post.title}</h1>
             <p className="mt-4 text-sm">{post.metaDescription}</p>
           </div>
 
           <article>
 
-            <div className="text-sm border border-gray-900 dark:border-gray-100 rounded p-4">
+            <div className="max-w-[65ch] text-sm border border-gray-900 dark:border-gray-100 rounded p-4">
               <div className="flex gap-2">
                 <p className="font-bold">Publicado em:</p>
                 <Date dateString={post.publishedAt} />
@@ -165,7 +168,7 @@ export default function Post({ post, posts }) {
           </article>
         </main>
         
-        <aside className="max-w-[65ch] mx-auto pt-6">
+        <aside className="max-w-[65ch] pt-6">
         <p className="text-3xl font-bold pb-6">Mais Posts</p>
           <PostsList posts={posts}/>
 

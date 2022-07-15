@@ -7,7 +7,6 @@ import ProfileCard from '../components/ProfileCard'
 
 import client from '../apollo-client'
 import { gql } from '@apollo/client'
-import Footer from '../components/Footer'
 
 export const GET_POSTS = gql`
   query GetPosts {
@@ -33,6 +32,9 @@ interface PostsData {
     publishedAt: Date;
     createdAt: Date;
     locale: string;
+    categories: {
+      title:string
+    }
   }
 }
 
@@ -59,12 +61,13 @@ export default function Home({ posts }) {
       </Head>
 
       <section className='md:flex gap-6 items-end'>
-        <div className='md:flex-col'>
+        <div className='h-[144px] w-[144px] md:flex-col'>
           <Image
             src='/images/profile.jpg'
             height={144}
             width={144}
-            className='rounded-3xl'></Image>
+            className='rounded-3xl'>
+          </Image>
         </div>
 
         <div className='my-6 md:flex-col'>
