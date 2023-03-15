@@ -24,14 +24,14 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      
+
       <Header />
 
       <main className='mx-auto max-w-7xl p-4'>{children}</main>
       {!home && (
         <div className='mx-auto max-w-7xl p-4'>
-          <Link href="/">
-            <a className='text-blue-500 hover:underline'>← Back to Home</a>
+          <Link className='text-blue-500 hover:underline' href="/">
+            ← Back to Home
           </Link>
         </div>
       )}

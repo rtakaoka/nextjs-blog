@@ -7,10 +7,11 @@ import ProfileCard from '../components/ProfileCard'
 
 import client from '../apollo-client'
 import { gql } from '@apollo/client'
+import { MouseEvent, useState } from 'react'
 
 export const GET_POSTS = gql`
-  query GetPosts {
-    posts(orderBy: createdAt_DESC, stage: PUBLISHED) {
+  query GetPosts ($first: Int, $after: String){
+    posts(orderBy: createdAt_DESC, stage: PUBLISHED, first: $first, after: $after) {
       id
       slug
       title
@@ -21,6 +22,15 @@ export const GET_POSTS = gql`
         title
       }
     }
+    postsConnection(orderBy: createdAt_DESC, stage: PUBLISHED, first: $first, after: $after) {
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      pageSize
+      startCursor
+    }
+  }
   }
 `;
 
@@ -33,27 +43,83 @@ interface PostsData {
     createdAt: Date;
     locale: string;
     categories: {
-      title:string
+      title: string
+    }
+  }
+  postsConnection: {
+    pageInfo: {
+      endCursor: string;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      pageSize: number;
+      startCursor: string
     }
   }
 }
 
-export async function getStaticProps() {
+interface PostsDataArray extends Array<PostsData["posts"]>{}
 
-  const { data } = await client.query<PostsData>({
+async function getPosts(first: number = 4, after: string = null) {
+  const { loading, data } = await client.query<PostsData>({
     query: GET_POSTS,
+    variables: { first: first, after: after }
   });
 
   return {
+    posts: data.posts,
+    postsConnection: data.postsConnection,
+  }
+}
+
+async function loadMorePosts(posts: PostsData["posts"], postsConnection: PostsData["postsConnection"]) {
+  const cursor = postsConnection.pageInfo.endCursor
+  const { loading, data } = await client.query<PostsData>({
+    query: GET_POSTS,
+    variables: { first: 4, after: cursor }
+  });
+
+  const newPosts: PostsData["posts"] = data.posts
+
+  return {
     props: {
-      posts: data.posts,
+      posts: [...posts, ...newPosts],
+      postsConnection: data.postsConnection
+    }
+  }
+
+}
+
+export async function getStaticProps() {
+
+  const { posts, postsConnection } = await getPosts()
+
+  return {
+    props: {
+      posts: posts,
+      postsConnection: postsConnection,
     },
     revalidate: 10,
   }
 }
 
-export default function Home({ posts }) {
-  
+export default function Home(props: PostsData) {
+  const [posts, setPosts] = useState(props.posts)
+  const [postsConnection, setPostsConnection] = useState(props.postsConnection)
+  const [disable, setDisable] = useState(false)
+  const [buttonText, setButtonText] = useState("Carregar Mais...")
+
+
+  const handleClick = async (e: MouseEvent) => {
+    const newProps = await loadMorePosts(posts, postsConnection)
+    setPosts(newProps.props.posts)
+    setPostsConnection(newProps.props.postsConnection)
+
+    if (!postsConnection.pageInfo.hasNextPage) {
+      setDisable(true)
+      setButtonText("Em breve mais posts...")
+    }
+  }
+
   return (
     <Layout home>
       <Head>
@@ -66,6 +132,7 @@ export default function Home({ posts }) {
             src='/images/profile.jpg'
             height={144}
             width={144}
+            alt='Foto Rômulo Takaoka'
             className='rounded-3xl'>
           </Image>
         </div>
@@ -79,14 +146,18 @@ export default function Home({ posts }) {
 
 
       <section className='md:flex gap-6 items-start'>
-
-        <PostsList posts={posts} />
+        <div>
+          <PostsList posts={posts} />
+          <button
+            disabled={disable}
+            onClick={e => handleClick(e)}>{buttonText}</button>
+        </div>
 
         <ProfileCard />
 
       </section>
 
     </Layout>
-    
+
   )
 }

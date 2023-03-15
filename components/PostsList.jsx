@@ -26,25 +26,25 @@ export default function PostsList({ posts }) {
                 `}
           >
             <div className="flex gap-4 justify-between items-baseline text-xs">
-              <Link href={`/posts/${post.slug}`}>
-                <a className="hover:underline">
-                  {post.slug == slug
-                    ? <p>Você está lendo este post<span className="text-xl"> 🎉</span></p>
-                    : <Date dateString={post.publishedAt} />
-                  }
-                </a>
+              <Link
+                className="hover:underline"
+                href={`/posts/${post.slug}`}>
+                {post.slug == slug
+                  ? <p>Você está lendo este post<span className="text-xl"> 🎉</span></p>
+                  : <Date dateString={post.publishedAt} />
+                }
               </Link>
 
               <p className="rounded bg-gray-300 dark:bg-gray-700 px-2 py-1 hover:no-underline">{post.categories[0].title}</p>
-                
+
 
 
             </div>
 
 
-            <div className="mt-4">
+            <div className="mt-4 font-bold hover:underline">
               <Link href={`/posts/${post.slug}`}>
-                <a className='font-bold hover:underline'>{post.title}</a>
+                {post.title}
               </Link>
             </div>
 

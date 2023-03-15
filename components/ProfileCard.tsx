@@ -21,33 +21,30 @@ export default function ProfileCard() {
         <div className='flex gap-4 mt-4'>
 
           <Link
+            className='hover:text-blue-500 flex-col'
             href="https://github.com/rtakaoka"
             target={'_blank'}
             aria-label='Perfil Github'
           >
-            <a className='hover:text-blue-500 flex-col'>
-              <GithubLogo size={24} />
-            </a>
+            <GithubLogo size={24} />
           </Link>
 
           <Link
+            className='hover:text-blue-500 flex-col'
             href="https://linkedin.com/in/romulotakaoka"
             aria-label='Perfil LinkedIn'
             target={'_blank'}>
-            <a className='hover:text-blue-500 flex-col'>
-              <LinkedinLogo size={24} />
-            </a>
+            <LinkedinLogo size={24} />
           </Link>
 
           <Link
+            className='hover:text-blue-500 flex-col'
             href="mailto:romulo.takaoka@desperta.me"
             aria-label='Enviar e-mail'>
-            <a className='hover:text-blue-500 flex-col'>
-              <Envelope size={24} />
-            </a>
+            <Envelope size={24} />
           </Link>
         </div>
       </div>
-    </aside>
+    </aside >
   )
 }
